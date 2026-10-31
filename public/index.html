@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>CrocoCoder Status</title>
+  <style>
+    body { font-family: sans-serif; max-width: 480px; margin: 2rem auto; }
+    button { padding: .5rem 1rem; margin-right: .5rem; }
+    #result { margin-top: 1rem; font-size: 1.2rem; }
+  </style>
+</head>
+<body>
+  <h1>🐊 CrocoCoder Status</h1>
+  <button onclick="call('/health')">Health</button>
+  <button onclick="call('/version')">Version</button>
+  <button onclick="call('/boom')">Boom (erreur 500)</button>
+  <p id="result">Cliquez sur un bouton.</p>
+
+  <script>
+    async function call(path) {
+      const r = await fetch(path);
+      const text = await r.text();
+      document.getElementById('result').textContent =
+        path + ' → ' + r.status + ' : ' + text;
+    }
+  </script>
+</body>
+</html>
